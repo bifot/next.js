@@ -118,7 +118,7 @@ export default class Server {
     previewProps: __ApiPreviewProps
   }
   private compression?: Middleware
-  private onErrorMiddleware?: ({ err }: { err: Error }) => Promise<void>
+  private onErrorMiddleware?: ({ err, req, res }: { err: Error, req: IncomingMessage, res: ServerResponse }) => Promise<void>
   router: Router
   protected dynamicRoutes?: DynamicRoutes
   protected customRoutes?: {
