@@ -228,9 +228,13 @@ export default class Server {
     return PHASE_PRODUCTION_SERVER
   }
 
-  private logError(err: Error): void {
+  private logError(
+    err: Error,
+    req: IncomingMessage,
+    res: ServerResponse,
+  ): void {
     if (this.onErrorMiddleware) {
-      this.onErrorMiddleware({ err })
+      this.onErrorMiddleware({ err, req, res })
     }
     if (this.quiet) return
     // tslint:disable-next-line
